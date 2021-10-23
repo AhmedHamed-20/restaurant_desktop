@@ -387,7 +387,7 @@ class AdminCubit extends Cubit<AdminState> {
   }
 
   editRecipeData(String token, String name, String slug, int price,
-      int cookingtime, List ingredients, String recipeId, context) {
+      int cookingtime, List ingredients, String recipeId, File image, context) {
     DioFunc.patchRecipe(
             token: token,
             ingredients: ingredients,
@@ -395,6 +395,7 @@ class AdminCubit extends Cubit<AdminState> {
             price: price,
             cookingTime: cookingtime,
             name: name,
+            image: image,
             url: '${EndPoints.allRecipies + recipeId}')
         .then((value) {
       print(value);

@@ -90,15 +90,29 @@ class _RecipeDetailesAdminState extends State<RecipeDetailesAdmin> {
                       }
                     }
 
-                    cubit.editRecipeData(
-                        token,
-                        recipeNameController.text,
-                        recipeSlugController.text,
-                        int.parse(recipePriceController.text),
-                        int.parse(recipeCockingController.text),
-                        editIngredients,
-                        widget.Recipeid,
-                        context);
+                    if (cubit.imagepicked == null) {
+                      cubit.editRecipeWithoutPhoto(
+                          widget.Recipeid,
+                          token,
+                          recipeNameController.text,
+                          recipeSlugController.text,
+                          editIngredients,
+                          recipeCategoryController.text,
+                          int.parse(recipeCockingController.text),
+                          int.parse(recipePriceController.text),
+                          context);
+                    } else {
+                      cubit.editRecipeData(
+                          token,
+                          recipeNameController.text,
+                          recipeSlugController.text,
+                          int.parse(recipePriceController.text),
+                          int.parse(recipeCockingController.text),
+                          editIngredients,
+                          widget.Recipeid,
+                          cubit.imagepicked,
+                          context);
+                    }
                   },
                   color: Colors.orangeAccent,
                   shape: RoundedRectangleBorder(
