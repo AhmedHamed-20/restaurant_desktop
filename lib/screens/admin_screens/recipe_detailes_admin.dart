@@ -5,7 +5,6 @@ import 'package:restaurant_windows/models/bloc/states/admin_state.dart';
 import 'package:restaurant_windows/models/cach/chach.dart';
 import 'package:restaurant_windows/models/dio/end_points.dart';
 
-
 List<TextEditingController> controller = [];
 TextEditingController recipeNameController = TextEditingController();
 TextEditingController recipePriceController = TextEditingController();
@@ -90,18 +89,16 @@ class _RecipeDetailesAdminState extends State<RecipeDetailesAdmin> {
                         editIngredients.add(controller[i].text.trim());
                       }
                     }
-                  
-                      cubit.editRecipeData(
-                          token,
-                          recipeNameController.text,
-                          recipeSlugController.text,
-                          int.parse(recipePriceController.text),
-                          int.parse(recipeCockingController.text),
-                          editIngredients,
-                          widget.Recipeid,
-                    
-                          context);
-                  
+
+                    cubit.editRecipeData(
+                        token,
+                        recipeNameController.text,
+                        recipeSlugController.text,
+                        int.parse(recipePriceController.text),
+                        int.parse(recipeCockingController.text),
+                        editIngredients,
+                        widget.Recipeid,
+                        context);
                   },
                   color: Colors.orangeAccent,
                   shape: RoundedRectangleBorder(
@@ -123,16 +120,14 @@ class _RecipeDetailesAdminState extends State<RecipeDetailesAdmin> {
             leading: MaterialButton(
               onPressed: () {
                 Navigator.of(context).pop();
-               
-              child: Icon(
-                Icons.arrow_back_ios,
-                color: EndPoints.isDark
-                    ? Colors.white
-                    : EndPoints.isDark
-                        ? Colors.white
-                        : Colors.black,
-              );
-              },),
+                cubit.imagepicked = null;
+
+                Icon(
+                  Icons.arrow_back_ios,
+                  color: EndPoints.isDark ? Colors.white : Colors.black,
+                );
+              },
+            ),
             elevation: 0,
             backgroundColor: Colors.transparent,
             centerTitle: true,
@@ -163,11 +158,13 @@ class _RecipeDetailesAdminState extends State<RecipeDetailesAdmin> {
                     Center(
                       child: InkWell(
                         onTap: () {
-                         
+                          cubit.pickimage();
                         },
                         child: CircleAvatar(
                           radius: 60,
-                         
+                          backgroundImage: cubit.imagepicked == null
+                              ? NetworkImage(widget.imageurl)
+                              : FileImage(cubit.imagepicked),
                         ),
                       ),
                     ),

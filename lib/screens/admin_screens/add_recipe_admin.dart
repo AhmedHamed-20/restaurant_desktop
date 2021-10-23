@@ -6,7 +6,6 @@ import 'package:restaurant_windows/models/bloc/states/admin_state.dart';
 import 'package:restaurant_windows/models/cach/chach.dart';
 import 'package:restaurant_windows/models/dio/end_points.dart';
 
-
 class AddRecipeAdmin extends StatelessWidget {
   const AddRecipeAdmin({Key key}) : super(key: key);
 
@@ -143,7 +142,7 @@ class AddRecipeAdmin extends StatelessWidget {
                       Center(
                         child: InkWell(
                           onTap: () {
-                          
+                            cubit.Addimagepick();
                           },
                           child: CircleAvatar(
                             backgroundColor: Colors.orange[200],

@@ -1,7 +1,7 @@
-
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,7 +14,6 @@ import 'package:restaurant_windows/screens/admin_screens/categories_admin_screen
 import 'package:restaurant_windows/screens/admin_screens/orders_admin_screen.dart';
 import 'package:restaurant_windows/screens/admin_screens/recipes_admin_screen.dart';
 import 'package:restaurant_windows/screens/admin_screens/users_admin_screen.dart';
-
 
 class AdminCubit extends Cubit<AdminState> {
   AdminCubit() : super(AppintiState());
@@ -358,40 +357,39 @@ class AdminCubit extends Cubit<AdminState> {
     });
   }
 
-  // final ImagePicker picker = ImagePicker();
-  // File imagepicked;
+  FilePickerResult picker;
+  File imagepicked;
 
-  // pickimage() async {
-  //   // Pick an image
-  //   File image =
-  //       await picker.pickImage(source: ImageSource.gallery).then((value) {
-  //     emit(ImagePicked());
-  //     imagepicked = File(value.path);
-  //   }).catchError((onError) {
-  //     print(onError);
-  //   });
-  //   print(imagepicked.uri);
-  // }
+  pickimage() async {
+    // Pick an image
 
+    picker = await FilePicker.platform.pickFiles().then((value) {
+      emit(ImagePicked());
+      imagepicked = File(value.files.single.path);
+    }).catchError((onError) {
+      print(onError);
+    });
+    print(imagepicked.uri);
+  }
+
+  FilePickerResult picker2;
   File AddImagePicked;
 
-  // Addimagepick() async {
-  //   // Pick an image
-  //   File image =
-  //       await picker.pickImage(source: ImageSource.gallery).then((value) {
-  //     emit(ImagePicked());
-  //     AddImagePicked = File(value.path);
-  //   }).catchError((onError) {
-  //     print(onError);
-  //   });
-  //   print(AddImagePicked.uri);
-  // }
+  Addimagepick() async {
+    // Pick an image
+    picker2 = await FilePicker.platform.pickFiles().then((value) {
+      emit(ImagePicked());
+      AddImagePicked = File(value.files.single.path);
+    }).catchError((onError) {
+      print(onError);
+    });
+    print(AddImagePicked.uri);
+  }
 
   editRecipeData(String token, String name, String slug, int price,
-      int cookingtime, List ingredients, String recipeId,  context) {
+      int cookingtime, List ingredients, String recipeId, context) {
     DioFunc.patchRecipe(
             token: token,
-           
             ingredients: ingredients,
             slug: slug,
             price: price,
@@ -408,7 +406,7 @@ class AdminCubit extends Cubit<AdminState> {
           textColor: Colors.white,
           backgroundColor: Colors.green);
       Navigator.of(context).pop();
-     // imagepicked = null;
+      // imagepicked = null;
     }).catchError((onError) {
       Fluttertoast.showToast(
           msg: 'error', textColor: Colors.white, backgroundColor: Colors.red);
