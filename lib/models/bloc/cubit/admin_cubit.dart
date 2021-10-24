@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:restaurant_windows/models/bloc/states/admin_state.dart';
 import 'package:restaurant_windows/models/cach/chach.dart';
@@ -14,6 +13,7 @@ import 'package:restaurant_windows/screens/admin_screens/categories_admin_screen
 import 'package:restaurant_windows/screens/admin_screens/orders_admin_screen.dart';
 import 'package:restaurant_windows/screens/admin_screens/recipes_admin_screen.dart';
 import 'package:restaurant_windows/screens/admin_screens/users_admin_screen.dart';
+import 'package:toast/toast.dart';
 
 class AdminCubit extends Cubit<AdminState> {
   AdminCubit() : super(AppintiState());
@@ -66,7 +66,7 @@ class AdminCubit extends Cubit<AdminState> {
     });
   }
 
-  deleteUserById(String token, String userId) {
+  deleteUserById(String token, String userId, context) {
     DioFunc.deleteData(
       url: '${EndPoints.users + userId}',
       token: {
@@ -77,8 +77,9 @@ class AdminCubit extends Cubit<AdminState> {
       print(value);
       pageUsrs = 2;
       getAllusers(token);
-      Fluttertoast.showToast(
-          msg: 'Deleted success',
+      Toast.show("Deleted success", context,
+          duration: Toast.LENGTH_SHORT,
+          gravity: Toast.BOTTOM,
           backgroundColor: Colors.green,
           textColor: Colors.white);
     }).catchError((onError) {
@@ -154,7 +155,7 @@ class AdminCubit extends Cubit<AdminState> {
     });
   }
 
-  deleteCategorie(String token, String CategorieId) {
+  deleteCategorie(String token, String CategorieId, context) {
     DioFunc.deleteData(
       url: '${EndPoints.categories + CategorieId}',
       token: {
@@ -165,8 +166,9 @@ class AdminCubit extends Cubit<AdminState> {
       print(value);
 
       getAllCategories();
-      Fluttertoast.showToast(
-          msg: 'Deleted success',
+      Toast.show("Deleted success", context,
+          duration: Toast.LENGTH_SHORT,
+          gravity: Toast.BOTTOM,
           backgroundColor: Colors.green,
           textColor: Colors.white);
     }).catchError((onError) {
@@ -196,7 +198,7 @@ class AdminCubit extends Cubit<AdminState> {
   bool noDataUsers = false;
   bool noDataRecipe = false;
 
-  pageinathionOrders(String token) {
+  pageinathionOrders(String token, context) {
     emit(PageLoading());
     DioFunc.getdate(
       url: '${EndPoints.allOrdersPage + page.toString()}',
@@ -211,11 +213,12 @@ class AdminCubit extends Cubit<AdminState> {
       if (value.data['results'] == 0) {
         page = page;
         noData = true;
-        Fluttertoast.showToast(
-          msg: 'End of data ):',
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-        );
+        Toast.show("End of data", context,
+            duration: Toast.LENGTH_SHORT,
+            gravity: Toast.BOTTOM,
+            backgroundColor: Colors.green,
+            textColor: Colors.white);
+
         emit(PageGetEnd());
       } else {
         page++;
@@ -230,7 +233,7 @@ class AdminCubit extends Cubit<AdminState> {
     });
   }
 
-  pageinathionusers(String token) {
+  pageinathionusers(String token, context) {
     emit(PageLoading());
     DioFunc.getdate(
       url: '${EndPoints.allusersPage + pageUsrs.toString()}',
@@ -245,11 +248,12 @@ class AdminCubit extends Cubit<AdminState> {
       if (value.data['results'] == 0) {
         pageUsrs = pageUsrs;
         noDataUsers = true;
-        Fluttertoast.showToast(
-          msg: 'End of data ):',
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-        );
+        Toast.show("End of data ):", context,
+            duration: Toast.LENGTH_SHORT,
+            gravity: Toast.BOTTOM,
+            backgroundColor: Colors.green,
+            textColor: Colors.white);
+
         emit(PageGetEnd());
       } else {
         pageUsrs++;
@@ -264,7 +268,7 @@ class AdminCubit extends Cubit<AdminState> {
     });
   }
 
-  pageinathionRecipes() {
+  pageinathionRecipes(context) {
     emit(PageLoading());
     DioFunc.getdate(
       url: '${EndPoints.allRecipiesPage + pageRecipe.toString()}',
@@ -275,11 +279,12 @@ class AdminCubit extends Cubit<AdminState> {
       if (value.data['results'] == 0) {
         pageRecipe = pageRecipe;
         noDataRecipe = true;
-        Fluttertoast.showToast(
-          msg: 'End of data ):',
-          backgroundColor: Colors.green,
-          textColor: Colors.white,
-        );
+        Toast.show("End of data ):", context,
+            duration: Toast.LENGTH_SHORT,
+            gravity: Toast.BOTTOM,
+            backgroundColor: Colors.green,
+            textColor: Colors.white);
+
         emit(PageGetEnd());
       } else {
         pageRecipe++;
@@ -334,7 +339,7 @@ class AdminCubit extends Cubit<AdminState> {
     });
   }
 
-  deleteRecipe(String token, String recipeId) {
+  deleteRecipe(String token, String recipeId, context) {
     DioFunc.deleteData(
       url: '${EndPoints.allRecipies + recipeId}',
       token: {
@@ -345,11 +350,12 @@ class AdminCubit extends Cubit<AdminState> {
       print(value);
       pageRecipe = 2;
       getallRecipes();
-
-      Fluttertoast.showToast(
-          msg: 'Deleted Success',
+      Toast.show("Deleted Success", context,
+          duration: Toast.LENGTH_SHORT,
+          gravity: Toast.BOTTOM,
           backgroundColor: Colors.green,
           textColor: Colors.white);
+
       emit(RecipesDeleteSuccess());
     }).catchError((onError) {
       print(onError);
@@ -402,15 +408,24 @@ class AdminCubit extends Cubit<AdminState> {
 
       getallRecipes();
       emit(RecipesGetSuccess());
-      Fluttertoast.showToast(
-          msg: 'Changes Saved Sucess',
-          textColor: Colors.white,
-          backgroundColor: Colors.green);
+      Toast.show("Changes Saved Sucess", context,
+          duration: Toast.LENGTH_SHORT,
+          gravity: Toast.BOTTOM,
+          backgroundColor: Colors.green,
+          textColor: Colors.white);
+
       Navigator.of(context).pop();
       // imagepicked = null;
     }).catchError((onError) {
-      Fluttertoast.showToast(
-          msg: 'error', textColor: Colors.white, backgroundColor: Colors.red);
+      Toast.show(
+        "error",
+        context,
+        duration: Toast.LENGTH_SHORT,
+        gravity: Toast.BOTTOM,
+        textColor: Colors.white,
+        backgroundColor: Colors.red,
+      );
+
       print(onError);
     });
   }
@@ -431,10 +446,15 @@ class AdminCubit extends Cubit<AdminState> {
     ).then((value) {
       page = 2;
       getAllOrders(token);
-      Fluttertoast.showToast(
-          msg: 'Deleted Success',
-          backgroundColor: Colors.green,
-          textColor: Colors.white);
+      Toast.show(
+        "Deleted Success",
+        context,
+        duration: Toast.LENGTH_SHORT,
+        gravity: Toast.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+
       Navigator.of(context).pop();
       emit(OrderDeleteSuccess());
 
@@ -492,21 +512,29 @@ class AdminCubit extends Cubit<AdminState> {
 
       emit(RecipeCreatedSucces());
       Navigator.of(context).pop();
-      Fluttertoast.showToast(
-          msg: 'Created Success',
-          textColor: Colors.white,
-          backgroundColor: Colors.green);
+      Toast.show(
+        "Created Success",
+        context,
+        duration: Toast.LENGTH_SHORT,
+        gravity: Toast.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+
       for (int i = 0; i < controller.length; i++) {
         controller[i].clear();
       }
       lengthOFtextfield = 5;
     }).catchError((onError) {
-      Fluttertoast.showToast(
-          msg:
-              'error,please make sure to fill all fields and size of image less than 2 mb',
-          backgroundColor: Colors.red,
-          toastLength: Toast.LENGTH_LONG,
-          textColor: Colors.white);
+      Toast.show(
+        "error,please make sure to fill all fields and size of image less than 2 mb",
+        context,
+        duration: Toast.LENGTH_SHORT,
+        gravity: Toast.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
+
       print(onError);
       emit(RecipeCreatedError());
     });
@@ -534,16 +562,28 @@ class AdminCubit extends Cubit<AdminState> {
             cookingTime: cockingtime)
         .then((value) {
       print(value);
-      Fluttertoast.showToast(
-          msg: 'changes saved success',
-          textColor: Colors.white,
-          backgroundColor: Colors.green);
+      Toast.show(
+        "changes saved success",
+        context,
+        duration: Toast.LENGTH_SHORT,
+        gravity: Toast.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+
       Navigator.of(context).pop();
       getallRecipes();
       emit(RecipesGetSuccess());
     }).catchError((onError) {
-      Fluttertoast.showToast(
-          msg: 'error', textColor: Colors.white, backgroundColor: Colors.red);
+      Toast.show(
+        "error",
+        context,
+        duration: Toast.LENGTH_SHORT,
+        gravity: Toast.BOTTOM,
+        textColor: Colors.white,
+        backgroundColor: Colors.red,
+      );
+
       print(onError);
     });
   }

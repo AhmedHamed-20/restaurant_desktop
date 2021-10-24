@@ -6,7 +6,6 @@ import 'package:restaurant_windows/models/bloc/states/admin_state.dart';
 import 'package:restaurant_windows/models/cach/chach.dart';
 import 'package:restaurant_windows/models/dio/end_points.dart';
 
-
 class CategoriesAdmin extends StatelessWidget {
   const CategoriesAdmin({Key key}) : super(key: key);
 
@@ -207,327 +206,350 @@ class CategoriesAdmin extends StatelessWidget {
                     child: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(
                           parent: AlwaysScrollableScrollPhysics()),
-                      child: Card(
-                        color:
-                            EndPoints.isDark ? Color(0xff393E46) : Colors.white,
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(children: [
-                          EndPoints.allCategories == null
-                              ? Center(
-                                  child: CircularProgressIndicator(),
-                                )
-                              : Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: ListView.separated(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: EndPoints.allCategories.length,
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          categorieNewName.clear();
-                                          showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              context: context,
-                                              builder: (context) {
-                                                return SingleChildScrollView(
-                                                  padding: EdgeInsets.only(
-                                                      bottom:
-                                                          MediaQuery.of(context)
+                      child: Center(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          child: Card(
+                            color: EndPoints.isDark
+                                ? Color(0xff393E46)
+                                : Colors.white,
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(children: [
+                              EndPoints.allCategories == null
+                                  ? Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView.separated(
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount:
+                                            EndPoints.allCategories.length,
+                                        itemBuilder: (context, index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              categorieNewName.clear();
+                                              showModalBottomSheet(
+                                                  isScrollControlled: true,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25)),
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return SingleChildScrollView(
+                                                      padding: EdgeInsets.only(
+                                                          bottom: MediaQuery.of(
+                                                                  context)
                                                               .viewInsets
                                                               .bottom),
-                                                  child: Container(
-                                                    padding: EdgeInsets.all(12),
-                                                    height:
-                                                        MediaQuery.of(context)
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.all(12),
+                                                        height: MediaQuery.of(
+                                                                    context)
                                                                 .size
                                                                 .height *
                                                             0.7,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        topLeft:
-                                                            Radius.circular(25),
-                                                        topRight:
-                                                            Radius.circular(25),
-                                                      ),
-                                                      color: EndPoints.isDark
-                                                          ? Color(0xff393E46)
-                                                          : Colors.white,
-                                                    ),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Text(
-                                                          'Update Categorie Name',
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontFamily:
-                                                                  'Bakta',
-                                                              color: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : Colors
-                                                                      .black),
-                                                        ),
-                                                        SizedBox(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              0.08,
-                                                        ),
-                                                        TextField(
-                                                          style: TextStyle(
-                                                            color: EndPoints
-                                                                    .isDark
-                                                                ? Colors.white
-                                                                : EndPoints
-                                                                        .isDark
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .black,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    25),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    25),
                                                           ),
-                                                          cursorColor: EndPoints
+                                                          color: EndPoints
                                                                   .isDark
-                                                              ? Colors.white
-                                                              : EndPoints.isDark
-                                                                  ? Colors.white
-                                                                  : Colors
-                                                                      .black,
-                                                          controller:
-                                                              categorieNewName,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .text,
-                                                          onChanged: (value) {},
-                                                          onSubmitted: (val) {},
-                                                          decoration:
-                                                              InputDecoration(
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: EndPoints
-                                                                        .isDark
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .black,
-                                                              ),
+                                                              ? Color(
+                                                                  0xff393E46)
+                                                              : Colors.white,
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                              'Update Categorie Name',
+                                                              style: TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontFamily:
+                                                                      'Bakta',
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black),
                                                             ),
-                                                            labelText:
-                                                                'Categorie New Name',
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            15),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .orangeAccent,
-                                                                    )),
-                                                            labelStyle: TextStyle(
+                                                            SizedBox(
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.08,
+                                                            ),
+                                                            TextField(
+                                                              style: TextStyle(
                                                                 color: EndPoints
                                                                         .isDark
                                                                     ? Colors
                                                                         .white
-                                                                    : Colors
-                                                                        .black),
-                                                            prefixIcon: Icon(
-                                                              IconlyBroken
-                                                                  .paper,
-                                                              color: EndPoints
+                                                                    : EndPoints
+                                                                            .isDark
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Colors
+                                                                            .black,
+                                                              ),
+                                                              cursorColor: EndPoints
                                                                       .isDark
                                                                   ? Colors.white
-                                                                  : Colors
-                                                                      .black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            15),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .orangeAccent,
-                                                                    )),
-                                                            disabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .orangeAccent,
+                                                                  : EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black,
+                                                              controller:
+                                                                  categorieNewName,
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .text,
+                                                              onChanged:
+                                                                  (value) {},
+                                                              onSubmitted:
+                                                                  (val) {},
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                enabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              15),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: EndPoints.isDark
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Colors
+                                                                            .black,
+                                                                  ),
+                                                                ),
+                                                                labelText:
+                                                                    'Categorie New Name',
+                                                                focusedBorder:
+                                                                    OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                15),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.orangeAccent,
+                                                                        )),
+                                                                labelStyle: TextStyle(
+                                                                    color: EndPoints.isDark
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Colors
+                                                                            .black),
+                                                                prefixIcon:
+                                                                    Icon(
+                                                                  IconlyBroken
+                                                                      .paper,
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black,
+                                                                ),
+                                                                border:
+                                                                    OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                15),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.orangeAccent,
+                                                                        )),
+                                                                disabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Colors
+                                                                        .orangeAccent,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
+                                                            SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            MaterialButton(
+                                                              shape:
+                                                                  RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            25),
+                                                              ),
+                                                              color: Colors
+                                                                  .orangeAccent,
+                                                              onPressed: () {
+                                                                cubit
+                                                                    .editCategorieName(
+                                                                  categorieNewName
+                                                                      .text,
+                                                                  token,
+                                                                  EndPoints.allCategories[
+                                                                          index]
+                                                                      ['_id'],
+                                                                  context,
+                                                                );
+                                                              },
+                                                              child: Text(
+                                                                'Change',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                            )
+                                                          ],
                                                         ),
-                                                        SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        MaterialButton(
+                                                      ),
+                                                    );
+                                                  });
+                                            },
+                                            child: ListTile(
+                                              title: Text(
+                                                EndPoints.allCategories[index]
+                                                    ['name'],
+                                                style: TextStyle(
+                                                  fontFamily: 'Bakta',
+                                                  fontSize: 20,
+                                                  color: EndPoints.isDark
+                                                      ? Colors.white
+                                                      : EndPoints.isDark
+                                                          ? Colors.white
+                                                          : Colors.black,
+                                                ),
+                                              ),
+                                              trailing: MaterialButton(
+                                                child: Icon(
+                                                  Icons.delete,
+                                                  color: Colors.orangeAccent,
+                                                ),
+                                                onPressed: () {
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return AlertDialog(
+                                                          backgroundColor:
+                                                              EndPoints.isDark
+                                                                  ? Color(
+                                                                      0xff393E46)
+                                                                  : Colors
+                                                                      .white,
                                                           shape:
                                                               RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        25),
+                                                                        15),
                                                           ),
-                                                          color: Colors
-                                                              .orangeAccent,
-                                                          onPressed: () {
-                                                            cubit
-                                                                .editCategorieName(
-                                                              categorieNewName
-                                                                  .text,
-                                                              token,
-                                                              EndPoints
-                                                                      .allCategories[
-                                                                  index]['_id'],
-                                                              context,
-                                                            );
-                                                          },
-                                                          child: Text(
-                                                            'Change',
+                                                          title: Text(
+                                                            'You sure to delete this category',
+                                                            textAlign: TextAlign
+                                                                .center,
                                                             style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                );
-                                              });
-                                        },
-                                        child: ListTile(
-                                          title: Text(
-                                            EndPoints.allCategories[index]
-                                                ['name'],
-                                            style: TextStyle(
-                                              fontFamily: 'Bakta',
-                                              fontSize: 18,
-                                              color: EndPoints.isDark
-                                                  ? Colors.white
-                                                  : EndPoints.isDark
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                            ),
-                                          ),
-                                          trailing: MaterialButton(
-                                            child: Icon(
-                                              Icons.delete,
-                                              color: Colors.orangeAccent,
-                                            ),
-                                            onPressed: () {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return AlertDialog(
-                                                      backgroundColor: EndPoints
-                                                              .isDark
-                                                          ? Color(0xff393E46)
-                                                          : Colors.white,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                      ),
-                                                      title: Text(
-                                                        'You sure to delete this category',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          color: EndPoints
-                                                                  .isDark
-                                                              ? Colors.white
-                                                              : EndPoints.isDark
+                                                              color: EndPoints
+                                                                      .isDark
                                                                   ? Colors.white
-                                                                  : Colors
-                                                                      .black,
-                                                          fontFamily: 'Bakta',
-                                                        ),
-                                                      ),
-                                                      content: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                          children: [
-                                                            MaterialButton(
-                                                              onPressed: () {
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
-                                                              child: Text(
-                                                                'Cancel',
-                                                                style: TextStyle(
-                                                                    color: EndPoints.isDark
-                                                                        ? Colors
-                                                                            .white
-                                                                        : Colors
-                                                                            .black),
-                                                              ),
+                                                                  : EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black,
+                                                              fontFamily:
+                                                                  'Bakta',
                                                             ),
-                                                            MaterialButton(
-                                                              onPressed: () {
-                                                                cubit.deleteCategorie(
-                                                                    token,
-                                                                    EndPoints.allCategories[
-                                                                            index]
-                                                                        [
-                                                                        '_id']);
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                              },
-                                                              child: Text(
-                                                                'Confirm',
-                                                                style: TextStyle(
-                                                                    color: EndPoints.isDark
-                                                                        ? Colors
-                                                                            .white
-                                                                        : Colors
-                                                                            .black),
-                                                              ),
-                                                            ),
-                                                          ]),
-                                                    );
-                                                  });
-                                            },
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder:
-                                        (BuildContext context, int index) {
-                                      return Divider(
-                                        color: EndPoints.isDark
-                                            ? Color(0xff222831)
-                                            : Colors.grey[300],
-                                        thickness: 1.5,
-                                      );
-                                    },
-                                  ),
-                                )
-                        ]),
+                                                          ),
+                                                          content: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                MaterialButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                  child: Text(
+                                                                    'Cancel',
+                                                                    style: TextStyle(
+                                                                        color: EndPoints.isDark
+                                                                            ? Colors.white
+                                                                            : Colors.black),
+                                                                  ),
+                                                                ),
+                                                                MaterialButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    cubit.deleteCategorie(
+                                                                        token,
+                                                                        EndPoints.allCategories[index]
+                                                                            [
+                                                                            '_id'],
+                                                                        context);
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                  child: Text(
+                                                                    'Confirm',
+                                                                    style: TextStyle(
+                                                                        color: EndPoints.isDark
+                                                                            ? Colors.white
+                                                                            : Colors.black),
+                                                                  ),
+                                                                ),
+                                                              ]),
+                                                        );
+                                                      });
+                                                },
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        separatorBuilder:
+                                            (BuildContext context, int index) {
+                                          return Divider(
+                                            color: EndPoints.isDark
+                                                ? Color(0xff222831)
+                                                : Colors.grey[300],
+                                            thickness: 1.5,
+                                          );
+                                        },
+                                      ),
+                                    )
+                            ]),
+                          ),
+                        ),
                       ),
                     ),
                   ),

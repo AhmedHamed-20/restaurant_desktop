@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_windows/models/bloc/cubit/admin_cubit.dart';
+import 'package:restaurant_windows/models/bloc/cubit/login_cubit.dart';
 import 'package:restaurant_windows/models/bloc/states/admin_state.dart';
 import 'package:restaurant_windows/screens/login_screen.dart';
 
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (BuildContext context) => AdminCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => LoginCubit(),
         ),
       ],
       child: BlocConsumer<AdminCubit, AdminState>(

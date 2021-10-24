@@ -39,7 +39,7 @@ dependencies:
   flutter_bloc: ^7.1.0
   shared_preferences: ^2.0.6
   flutter_iconly: ^1.0.2
-  fluttertoast: ^8.0.8
+  toast: ^0.1.5
   internet_connection_checker: ^0.0.1+2
   flutter_staggered_grid_view: ^0.4.0
   http_parser: ^4.0.0
@@ -83,10 +83,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+     - family: Batka
+       fonts:
+         - asset: assets/fonts/font.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

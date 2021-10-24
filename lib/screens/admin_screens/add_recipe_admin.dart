@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:restaurant_windows/models/bloc/cubit/admin_cubit.dart';
 import 'package:restaurant_windows/models/bloc/states/admin_state.dart';
 import 'package:restaurant_windows/models/cach/chach.dart';
 import 'package:restaurant_windows/models/dio/end_points.dart';
+import 'package:toast/toast.dart';
 
 class AddRecipeAdmin extends StatelessWidget {
   const AddRecipeAdmin({Key key}) : super(key: key);
@@ -56,10 +56,14 @@ class AddRecipeAdmin extends StatelessWidget {
                           int.parse(recipeCockingController.text) == null ||
                           recipeSlugController.text.trim() == null ||
                           recipeCategoryController.text.trim() == null) {
-                        Fluttertoast.showToast(
-                            msg: 'Please make sure to fill all data',
-                            textColor: Colors.white,
-                            backgroundColor: Colors.red);
+                        Toast.show(
+                          "Please make sure to fill all data",
+                          context,
+                          duration: Toast.LENGTH_SHORT,
+                          gravity: Toast.BOTTOM,
+                          backgroundColor: Colors.yellow,
+                          textColor: Colors.white,
+                        );
                       } else {
                         print(ingredients);
                         print(recipeNameController.text.trim());
@@ -85,10 +89,14 @@ class AddRecipeAdmin extends StatelessWidget {
                         ? CircularProgressIndicator(
                             strokeWidth: 1.6,
                           )
-                        : Text(
-                            'Create',
-                            style: TextStyle(
-                              color: Colors.white,
+                        : Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              'Create',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                   ),
@@ -127,82 +135,54 @@ class AddRecipeAdmin extends StatelessWidget {
                 ),
               ),
             ),
-            body: Card(
-              color: EndPoints.isDark ? Color(0xff393E46) : Colors.white,
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: InkWell(
-                          onTap: () {
-                            cubit.Addimagepick();
-                          },
-                          child: CircleAvatar(
-                            backgroundColor: Colors.orange[200],
-                            radius: 50,
-                            backgroundImage: cubit.AddImagePicked == null
-                                ? AssetImage(
-                                    'assets/images/add.png',
-                                  )
-                                : FileImage(cubit.AddImagePicked),
+            body: Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                child: Card(
+                  color: EndPoints.isDark ? Color(0xff393E46) : Colors.white,
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: InkWell(
+                              onTap: () {
+                                cubit.Addimagepick();
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: Colors.orange[200],
+                                radius: 50,
+                                backgroundImage: cubit.AddImagePicked == null
+                                    ? AssetImage(
+                                        'assets/images/add.png',
+                                      )
+                                    : FileImage(cubit.AddImagePicked),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Divider(
-                        color: EndPoints.isDark
-                            ? Color(0xff222831)
-                            : Colors.grey[300],
-                        thickness: 1.5,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Name',
-                        style: TextStyle(
-                          fontFamily: 'Batka',
-                          fontSize: 24,
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        style: TextStyle(
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                        cursorColor: EndPoints.isDark
-                            ? Colors.white
-                            : EndPoints.isDark
-                                ? Colors.white
-                                : Colors.black,
-                        controller: recipeNameController,
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) {},
-                        onSubmitted: (val) {},
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Divider(
+                            color: EndPoints.isDark
+                                ? Color(0xff222831)
+                                : Colors.grey[300],
+                            thickness: 1.5,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Name',
+                            style: TextStyle(
+                              fontFamily: 'Batka',
+                              fontSize: 24,
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
@@ -210,200 +190,217 @@ class AddRecipeAdmin extends StatelessWidget {
                                       : Colors.black,
                             ),
                           ),
-                          labelText: 'Name',
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          labelStyle: TextStyle(
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            style: TextStyle(
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
                                       ? Colors.white
-                                      : Colors.black),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.orangeAccent,
+                                      : Colors.black,
+                            ),
+                            cursorColor: EndPoints.isDark
+                                ? Colors.white
+                                : EndPoints.isDark
+                                    ? Colors.white
+                                    : Colors.black,
+                            controller: recipeNameController,
+                            keyboardType: TextInputType.text,
+                            onChanged: (value) {},
+                            onSubmitted: (val) {},
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black,
+                                ),
+                              ),
+                              labelText: 'Name',
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              labelStyle: TextStyle(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.orangeAccent,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      Divider(
-                        color: EndPoints.isDark
-                            ? Color(0xff222831)
-                            : Colors.grey[300],
-                        thickness: 1.5,
-                      ),
-                      Text(
-                        'Ingredients',
-                        style: TextStyle(
-                          fontFamily: 'Batka',
-                          fontSize: 24,
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
+                          Divider(
+                            color: EndPoints.isDark
+                                ? Color(0xff222831)
+                                : Colors.grey[300],
+                            thickness: 1.5,
+                          ),
+                          Text(
+                            'Ingredients',
+                            style: TextStyle(
+                              fontFamily: 'Batka',
+                              fontSize: 24,
+                              color: EndPoints.isDark
                                   ? Colors.white
-                                  : Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Card(
-                        color:
-                            EndPoints.isDark ? Color(0xff393E46) : Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        elevation: 12,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: TextField(
-                                          style: TextStyle(
-                                            color: EndPoints.isDark
-                                                ? Colors.white
-                                                : EndPoints.isDark
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                          ),
-                                          cursorColor: EndPoints.isDark
-                                              ? Colors.white
-                                              : Colors.black,
-                                          controller: cubit.controller[index],
-                                          keyboardType: TextInputType.text,
-                                          onChanged: (value) {},
-                                          onSubmitted: (val) {},
-                                          decoration: InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              borderSide: BorderSide(
+                                  : EndPoints.isDark
+                                      ? Colors.white
+                                      : Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Card(
+                            color: EndPoints.isDark
+                                ? Color(0xff393E46)
+                                : Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            elevation: 12,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: TextField(
+                                              style: TextStyle(
                                                 color: EndPoints.isDark
                                                     ? Colors.white
                                                     : EndPoints.isDark
                                                         ? Colors.white
                                                         : Colors.black,
                                               ),
-                                            ),
-                                            labelText: 'ingredients',
-                                            focusedBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                borderSide: BorderSide(
-                                                  color: Colors.orangeAccent,
-                                                )),
-                                            labelStyle: TextStyle(
-                                                color: EndPoints.isDark
-                                                    ? Colors.white
-                                                    : EndPoints.isDark
+                                              cursorColor: EndPoints.isDark
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              controller:
+                                                  cubit.controller[index],
+                                              keyboardType: TextInputType.text,
+                                              onChanged: (value) {},
+                                              onSubmitted: (val) {},
+                                              decoration: InputDecoration(
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  borderSide: BorderSide(
+                                                    color: EndPoints.isDark
                                                         ? Colors.white
-                                                        : Colors.black),
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                borderSide: BorderSide(
-                                                  color: Colors.orangeAccent,
-                                                )),
-                                            disabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.orangeAccent,
+                                                        : EndPoints.isDark
+                                                            ? Colors.white
+                                                            : Colors.black,
+                                                  ),
+                                                ),
+                                                labelText: 'ingredients',
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .orangeAccent,
+                                                        )),
+                                                labelStyle: TextStyle(
+                                                    color: EndPoints.isDark
+                                                        ? Colors.white
+                                                        : EndPoints.isDark
+                                                            ? Colors.white
+                                                            : Colors.black),
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          Colors.orangeAccent,
+                                                    )),
+                                                disabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Colors.orangeAccent,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
+                                          MaterialButton(
+                                            onPressed: () {
+                                              cubit.decrementTextfieldNumber(
+                                                  cubit.controller, index);
+                                            },
+                                            child: Icon(
+                                              Icons.delete,
+                                              color: Colors.orangeAccent,
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                      MaterialButton(
-                                        onPressed: () {
-                                          cubit.decrementTextfieldNumber(
-                                              cubit.controller, index);
-                                        },
-                                        child: Icon(
-                                          Icons.delete,
-                                          color: Colors.orangeAccent,
-                                        ),
-                                      )
-                                    ],
+                                    );
+                                  },
+                                  itemCount: cubit.lengthOFtextfield,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: MaterialButton(
+                                color: Colors.orangeAccent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                onPressed: () {
+                                  cubit.incrementTextfieldNumber(
+                                      cubit.controller);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Text(
+                                    'Add More TextField',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                );
-                              },
-                              itemCount: cubit.lengthOFtextfield,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      Center(
-                        child: MaterialButton(
-                          color: Colors.orangeAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                          SizedBox(
+                            height: 15,
                           ),
-                          onPressed: () {
-                            cubit.incrementTextfieldNumber(cubit.controller);
-                          },
-                          child: Text(
-                            'Add More TextField',
+                          Text(
+                            'Price',
                             style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        'Price',
-                        style: TextStyle(
-                          fontFamily: 'Batka',
-                          fontSize: 24,
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        style: TextStyle(
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                        cursorColor: EndPoints.isDark
-                            ? Colors.white
-                            : EndPoints.isDark
-                                ? Colors.white
-                                : Colors.black,
-                        controller: recipePriceController,
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {},
-                        onSubmitted: (val) {},
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
+                              fontFamily: 'Batka',
+                              fontSize: 24,
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
@@ -411,74 +408,150 @@ class AddRecipeAdmin extends StatelessWidget {
                                       : Colors.black,
                             ),
                           ),
-                          labelText: 'Price',
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          labelStyle: TextStyle(
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            style: TextStyle(
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
                                       ? Colors.white
-                                      : Colors.black),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.orangeAccent,
+                                      : Colors.black,
                             ),
-                          ),
-                        ),
-                      ),
-                      Divider(
-                        color: EndPoints.isDark
-                            ? Color(0xff222831)
-                            : Colors.grey[300],
-                        thickness: 1.5,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Category',
-                        style: TextStyle(
-                            fontFamily: 'Batka',
-                            fontSize: 24,
-                            color: EndPoints.isDark
+                            cursorColor: EndPoints.isDark
                                 ? Colors.white
                                 : EndPoints.isDark
                                     ? Colors.white
-                                    : Colors.black),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        style: TextStyle(
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
+                                    : Colors.black,
+                            controller: recipePriceController,
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) {},
+                            onSubmitted: (val) {},
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black,
+                                ),
+                              ),
+                              labelText: 'Price',
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              labelStyle: TextStyle(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.orangeAccent,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Divider(
+                            color: EndPoints.isDark
+                                ? Color(0xff222831)
+                                : Colors.grey[300],
+                            thickness: 1.5,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Category',
+                            style: TextStyle(
+                                fontFamily: 'Batka',
+                                fontSize: 24,
+                                color: EndPoints.isDark
+                                    ? Colors.white
+                                    : EndPoints.isDark
+                                        ? Colors.white
+                                        : Colors.black),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            style: TextStyle(
+                              color: EndPoints.isDark
                                   ? Colors.white
-                                  : Colors.black,
-                        ),
-                        cursorColor: EndPoints.isDark
-                            ? Colors.white
-                            : EndPoints.isDark
+                                  : EndPoints.isDark
+                                      ? Colors.white
+                                      : Colors.black,
+                            ),
+                            cursorColor: EndPoints.isDark
                                 ? Colors.white
-                                : Colors.black,
-                        controller: recipeCategoryController,
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) {},
-                        onSubmitted: (val) {},
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
+                                : EndPoints.isDark
+                                    ? Colors.white
+                                    : Colors.black,
+                            controller: recipeCategoryController,
+                            keyboardType: TextInputType.text,
+                            onChanged: (value) {},
+                            onSubmitted: (val) {},
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black,
+                                ),
+                              ),
+                              labelText: 'Category',
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              labelStyle: TextStyle(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.orangeAccent,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Divider(
+                            color: EndPoints.isDark
+                                ? Color(0xff222831)
+                                : Colors.grey[300],
+                            thickness: 1.5,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Cocking Time',
+                            style: TextStyle(
+                              fontFamily: 'Batka',
+                              fontSize: 24,
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
@@ -486,75 +559,75 @@ class AddRecipeAdmin extends StatelessWidget {
                                       : Colors.black,
                             ),
                           ),
-                          labelText: 'Category',
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          labelStyle: TextStyle(
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            style: TextStyle(
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
                                       ? Colors.white
-                                      : Colors.black),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.orangeAccent,
+                                      : Colors.black,
+                            ),
+                            cursorColor: EndPoints.isDark
+                                ? Colors.white
+                                : EndPoints.isDark
+                                    ? Colors.white
+                                    : Colors.black,
+                            controller: recipeCockingController,
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) {},
+                            onSubmitted: (val) {},
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black,
+                                ),
+                              ),
+                              labelText: 'Cocking Time',
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              labelStyle: TextStyle(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.orangeAccent,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      Divider(
-                        color: EndPoints.isDark
-                            ? Color(0xff222831)
-                            : Colors.grey[300],
-                        thickness: 1.5,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Cocking Time',
-                        style: TextStyle(
-                          fontFamily: 'Batka',
-                          fontSize: 24,
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        style: TextStyle(
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                        cursorColor: EndPoints.isDark
-                            ? Colors.white
-                            : EndPoints.isDark
-                                ? Colors.white
-                                : Colors.black,
-                        controller: recipeCockingController,
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {},
-                        onSubmitted: (val) {},
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Divider(
+                            color: EndPoints.isDark
+                                ? Color(0xff222831)
+                                : Colors.grey[300],
+                            thickness: 1.5,
+                          ),
+                          Text(
+                            'Slug',
+                            style: TextStyle(
+                              fontFamily: 'Batka',
+                              fontSize: 24,
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
@@ -562,107 +635,64 @@ class AddRecipeAdmin extends StatelessWidget {
                                       : Colors.black,
                             ),
                           ),
-                          labelText: 'Cocking Time',
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          labelStyle: TextStyle(
-                              color: EndPoints.isDark
-                                  ? Colors.white
-                                  : EndPoints.isDark
-                                      ? Colors.white
-                                      : Colors.black),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.orangeAccent,
-                            ),
+                          SizedBox(
+                            height: 10,
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Divider(
-                        color: EndPoints.isDark
-                            ? Color(0xff222831)
-                            : Colors.grey[300],
-                        thickness: 1.5,
-                      ),
-                      Text(
-                        'Slug',
-                        style: TextStyle(
-                          fontFamily: 'Batka',
-                          fontSize: 24,
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        style: TextStyle(
-                          color: EndPoints.isDark
-                              ? Colors.white
-                              : EndPoints.isDark
-                                  ? Colors.white
-                                  : Colors.black,
-                        ),
-                        cursorColor: EndPoints.isDark
-                            ? Colors.white
-                            : EndPoints.isDark
-                                ? Colors.white
-                                : Colors.black,
-                        controller: recipeSlugController,
-                        keyboardType: TextInputType.text,
-                        onChanged: (value) {},
-                        onSubmitted: (val) {},
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
+                          TextField(
+                            style: TextStyle(
                               color: EndPoints.isDark
                                   ? Colors.white
                                   : EndPoints.isDark
                                       ? Colors.white
                                       : Colors.black,
                             ),
-                          ),
-                          labelText: 'Slug',
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          labelStyle: TextStyle(
-                              color: EndPoints.isDark
-                                  ? Colors.white
-                                  : EndPoints.isDark
+                            cursorColor: EndPoints.isDark
+                                ? Colors.white
+                                : EndPoints.isDark
+                                    ? Colors.white
+                                    : Colors.black,
+                            controller: recipeSlugController,
+                            keyboardType: TextInputType.text,
+                            onChanged: (value) {},
+                            onSubmitted: (val) {},
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide(
+                                  color: EndPoints.isDark
                                       ? Colors.white
-                                      : Colors.black),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                color: Colors.orangeAccent,
-                              )),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.orangeAccent,
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black,
+                                ),
+                              ),
+                              labelText: 'Slug',
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              labelStyle: TextStyle(
+                                  color: EndPoints.isDark
+                                      ? Colors.white
+                                      : EndPoints.isDark
+                                          ? Colors.white
+                                          : Colors.black),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                  borderSide: BorderSide(
+                                    color: Colors.orangeAccent,
+                                  )),
+                              disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.orangeAccent,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),

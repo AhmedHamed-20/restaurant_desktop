@@ -92,6 +92,7 @@ class AdminLayout extends StatelessWidget {
               title: Text(
                 '${cubit.title[cubit.currentindex]}',
                 style: TextStyle(
+                  fontSize: 20,
                   color: EndPoints.isDark ? Colors.white : Colors.grey[800],
                   fontFamily: 'Batka',
                 ),

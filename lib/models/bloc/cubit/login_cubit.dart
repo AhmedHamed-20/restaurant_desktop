@@ -77,6 +77,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   String token;
   login(String email, String password, BuildContext context) {
+    emit(LoginLoadingState());
     try {
       DioFunc.postData(
         EndPoints.Login,
@@ -94,11 +95,13 @@ class LoginCubit extends Cubit<LoginState> {
             await getallRecipes();
             getAllCategories();
             getAllOrders(token);
+            emit(DataGetSucces());
             Navigate(context: context, Screen: AdminLayout());
           });
         });
       });
     } on DioError catch (e) {
+      emit(DataGeterror());
       print(e.response);
     }
   }
