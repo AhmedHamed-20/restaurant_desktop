@@ -131,16 +131,15 @@ class _RecipeDetailesAdminState extends State<RecipeDetailesAdmin> {
                 ),
               )
             ],
-            leading: MaterialButton(
-              onPressed: () {
+            leading: InkWell(
+              onTap: () {
                 Navigator.of(context).pop();
                 cubit.imagepicked = null;
-
-                Icon(
-                  Icons.arrow_back_ios,
-                  color: EndPoints.isDark ? Colors.white : Colors.black,
-                );
               },
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: EndPoints.isDark ? Colors.white : Colors.black,
+              ),
             ),
             elevation: 0,
             backgroundColor: Colors.transparent,

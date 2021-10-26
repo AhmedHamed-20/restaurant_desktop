@@ -33,3 +33,5 @@ class RecipesGetError extends LoginState {}
 class OrderGetSuccess extends LoginState {}
 
 class OrderGetError extends LoginState {}
+
+class changePasswordVisabilty extends LoginState {}

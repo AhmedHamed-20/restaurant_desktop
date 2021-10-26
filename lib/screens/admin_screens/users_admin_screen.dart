@@ -136,9 +136,25 @@ class UsersAdmin extends StatelessWidget {
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(15),
-                                                        child: TextField(
-                                                          style: TextStyle(
-                                                            color: EndPoints
+                                                        child: Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.7,
+                                                          child: TextField(
+                                                            style: TextStyle(
+                                                              color: EndPoints
+                                                                      .isDark
+                                                                  ? Colors.white
+                                                                  : EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black,
+                                                            ),
+                                                            cursorColor: EndPoints
                                                                     .isDark
                                                                 ? Colors.white
                                                                 : EndPoints
@@ -147,41 +163,58 @@ class UsersAdmin extends StatelessWidget {
                                                                         .white
                                                                     : Colors
                                                                         .black,
-                                                          ),
-                                                          cursorColor: EndPoints
-                                                                  .isDark
-                                                              ? Colors.white
-                                                              : EndPoints.isDark
-                                                                  ? Colors.white
-                                                                  : Colors
-                                                                      .black,
-                                                          controller:
-                                                              usernameBottomSheet,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .text,
-                                                          onChanged: (value) {},
-                                                          onSubmitted: (val) {},
-                                                          decoration:
-                                                              InputDecoration(
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Colors
-                                                                      .orangeAccent),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15),
-                                                            ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15),
-                                                              borderSide:
-                                                                  BorderSide(
+                                                            controller:
+                                                                usernameBottomSheet,
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .text,
+                                                            onChanged:
+                                                                (value) {},
+                                                            onSubmitted:
+                                                                (val) {},
+                                                            decoration:
+                                                                InputDecoration(
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide: BorderSide(
+                                                                    color: Colors
+                                                                        .orangeAccent),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15),
+                                                              ),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15),
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : EndPoints
+                                                                              .isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                ),
+                                                              ),
+                                                              labelText:
+                                                                  'UserName',
+                                                              labelStyle: TextStyle(
+                                                                  color: EndPoints.isDark
+                                                                      ? Colors.white
+                                                                      : EndPoints.isDark
+                                                                          ? Colors.white
+                                                                          : Colors.black),
+                                                              prefixIcon: Icon(
+                                                                IconlyBroken
+                                                                    .profile,
                                                                 color: EndPoints
                                                                         .isDark
                                                                     ? Colors
@@ -193,46 +226,10 @@ class UsersAdmin extends StatelessWidget {
                                                                         : Colors
                                                                             .black,
                                                               ),
-                                                            ),
-                                                            labelText:
-                                                                'UserName',
-                                                            labelStyle: TextStyle(
-                                                                color: EndPoints.isDark
-                                                                    ? Colors.white
-                                                                    : EndPoints.isDark
-                                                                        ? Colors.white
-                                                                        : Colors.black),
-                                                            prefixIcon: Icon(
-                                                              IconlyBroken
-                                                                  .profile,
-                                                              color: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                              color: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                            )),
-                                                            disabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
                                                                 color: EndPoints
                                                                         .isDark
                                                                     ? Colors
@@ -243,6 +240,22 @@ class UsersAdmin extends StatelessWidget {
                                                                             .white
                                                                         : Colors
                                                                             .black,
+                                                              )),
+                                                              disabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : EndPoints
+                                                                              .isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -252,9 +265,25 @@ class UsersAdmin extends StatelessWidget {
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(15),
-                                                        child: TextField(
-                                                          style: TextStyle(
-                                                            color: EndPoints
+                                                        child: Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.7,
+                                                          child: TextField(
+                                                            style: TextStyle(
+                                                              color: EndPoints
+                                                                      .isDark
+                                                                  ? Colors.white
+                                                                  : EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black,
+                                                            ),
+                                                            cursorColor: EndPoints
                                                                     .isDark
                                                                 ? Colors.white
                                                                 : EndPoints
@@ -263,41 +292,57 @@ class UsersAdmin extends StatelessWidget {
                                                                         .white
                                                                     : Colors
                                                                         .black,
-                                                          ),
-                                                          cursorColor: EndPoints
-                                                                  .isDark
-                                                              ? Colors.white
-                                                              : EndPoints.isDark
-                                                                  ? Colors.white
-                                                                  : Colors
-                                                                      .black,
-                                                          controller:
-                                                              emailBottomSheet,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .emailAddress,
-                                                          onChanged: (value) {},
-                                                          onSubmitted: (val) {},
-                                                          decoration:
-                                                              InputDecoration(
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Colors
-                                                                      .orangeAccent),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15),
-                                                            ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15),
-                                                              borderSide:
-                                                                  BorderSide(
+                                                            controller:
+                                                                emailBottomSheet,
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .emailAddress,
+                                                            onChanged:
+                                                                (value) {},
+                                                            onSubmitted:
+                                                                (val) {},
+                                                            decoration:
+                                                                InputDecoration(
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide: BorderSide(
+                                                                    color: Colors
+                                                                        .orangeAccent),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15),
+                                                              ),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15),
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : EndPoints
+                                                                              .isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                ),
+                                                              ),
+                                                              labelText:
+                                                                  'Email',
+                                                              labelStyle: TextStyle(
+                                                                  color: EndPoints.isDark
+                                                                      ? Colors.white
+                                                                      : EndPoints.isDark
+                                                                          ? Colors.white
+                                                                          : Colors.black),
+                                                              prefixIcon: Icon(
+                                                                Icons.email,
                                                                 color: EndPoints
                                                                         .isDark
                                                                     ? Colors
@@ -309,44 +354,10 @@ class UsersAdmin extends StatelessWidget {
                                                                         : Colors
                                                                             .black,
                                                               ),
-                                                            ),
-                                                            labelText: 'Email',
-                                                            labelStyle: TextStyle(
-                                                                color: EndPoints.isDark
-                                                                    ? Colors.white
-                                                                    : EndPoints.isDark
-                                                                        ? Colors.white
-                                                                        : Colors.black),
-                                                            prefixIcon: Icon(
-                                                              Icons.email,
-                                                              color: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                              color: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                            )),
-                                                            disabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
                                                                 color: EndPoints
                                                                         .isDark
                                                                     ? Colors
@@ -357,6 +368,22 @@ class UsersAdmin extends StatelessWidget {
                                                                             .white
                                                                         : Colors
                                                                             .black,
+                                                              )),
+                                                              disabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : EndPoints
+                                                                              .isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -366,9 +393,25 @@ class UsersAdmin extends StatelessWidget {
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(15),
-                                                        child: TextField(
-                                                          style: TextStyle(
-                                                            color: EndPoints
+                                                        child: Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.7,
+                                                          child: TextField(
+                                                            style: TextStyle(
+                                                              color: EndPoints
+                                                                      .isDark
+                                                                  ? Colors.white
+                                                                  : EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black,
+                                                            ),
+                                                            cursorColor: EndPoints
                                                                     .isDark
                                                                 ? Colors.white
                                                                 : EndPoints
@@ -377,41 +420,56 @@ class UsersAdmin extends StatelessWidget {
                                                                         .white
                                                                     : Colors
                                                                         .black,
-                                                          ),
-                                                          cursorColor: EndPoints
-                                                                  .isDark
-                                                              ? Colors.white
-                                                              : EndPoints.isDark
-                                                                  ? Colors.white
-                                                                  : Colors
-                                                                      .black,
-                                                          controller:
-                                                              roleBottomSheet,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .text,
-                                                          onChanged: (value) {},
-                                                          onSubmitted: (val) {},
-                                                          decoration:
-                                                              InputDecoration(
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                  color: Colors
-                                                                      .orangeAccent),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15),
-                                                            ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15),
-                                                              borderSide:
-                                                                  BorderSide(
+                                                            controller:
+                                                                roleBottomSheet,
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .text,
+                                                            onChanged:
+                                                                (value) {},
+                                                            onSubmitted:
+                                                                (val) {},
+                                                            decoration:
+                                                                InputDecoration(
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide: BorderSide(
+                                                                    color: Colors
+                                                                        .orangeAccent),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15),
+                                                              ),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15),
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : EndPoints
+                                                                              .isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                ),
+                                                              ),
+                                                              labelText: 'role',
+                                                              labelStyle: TextStyle(
+                                                                  color: EndPoints.isDark
+                                                                      ? Colors.white
+                                                                      : EndPoints.isDark
+                                                                          ? Colors.white
+                                                                          : Colors.black),
+                                                              prefixIcon: Icon(
+                                                                Icons.person,
                                                                 color: EndPoints
                                                                         .isDark
                                                                     ? Colors
@@ -423,44 +481,10 @@ class UsersAdmin extends StatelessWidget {
                                                                         : Colors
                                                                             .black,
                                                               ),
-                                                            ),
-                                                            labelText: 'role',
-                                                            labelStyle: TextStyle(
-                                                                color: EndPoints.isDark
-                                                                    ? Colors.white
-                                                                    : EndPoints.isDark
-                                                                        ? Colors.white
-                                                                        : Colors.black),
-                                                            prefixIcon: Icon(
-                                                              Icons.person,
-                                                              color: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                              color: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                            )),
-                                                            disabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
                                                                 color: EndPoints
                                                                         .isDark
                                                                     ? Colors
@@ -471,6 +495,22 @@ class UsersAdmin extends StatelessWidget {
                                                                             .white
                                                                         : Colors
                                                                             .black,
+                                                              )),
+                                                              disabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : EndPoints
+                                                                              .isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),

@@ -5,6 +5,8 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:restaurant_windows/models/bloc/cubit/admin_cubit.dart';
 import 'package:restaurant_windows/models/bloc/states/admin_state.dart';
 import 'package:restaurant_windows/models/dio/end_points.dart';
+import 'package:restaurant_windows/screens/login_screen.dart';
+import 'package:restaurant_windows/widgets/navigate.dart';
 
 class AdminLayout extends StatelessWidget {
   var token;
@@ -97,7 +99,19 @@ class AdminLayout extends StatelessWidget {
                   fontFamily: 'Batka',
                 ),
               ),
-              actions: [],
+              actions: [
+                MaterialButton(
+                  onPressed: () {
+                    cubit.logout().then((value) {
+                      Navigate(context: context, Screen: LoginScreen());
+                    });
+                  },
+                  child: Icon(
+                    Icons.logout,
+                    color: EndPoints.isDark ? Colors.white : Colors.black,
+                  ),
+                )
+              ],
               elevation: 0,
               systemOverlayStyle: SystemUiOverlayStyle(
                 statusBarIconBrightness: Brightness.light,

@@ -118,7 +118,7 @@ class OrdersAdmin extends StatelessWidget {
                                                                 'Address',
                                                                 style:
                                                                     TextStyle(
-                                                                  fontSize: 18,
+                                                                  fontSize: 22,
                                                                   fontFamily:
                                                                       'Batka',
                                                                   color: EndPoints
@@ -211,7 +211,7 @@ class OrdersAdmin extends StatelessWidget {
                                                                     index][
                                                                 'customerAddress'],
                                                             style: TextStyle(
-                                                                fontSize: 16,
+                                                                fontSize: 18,
                                                                 color: Colors
                                                                     .grey),
                                                           ),
@@ -221,7 +221,7 @@ class OrdersAdmin extends StatelessWidget {
                                                           Text(
                                                             'Phone Number',
                                                             style: TextStyle(
-                                                                fontSize: 18,
+                                                                fontSize: 22,
                                                                 fontFamily:
                                                                     'Batka',
                                                                 color: EndPoints
@@ -229,14 +229,14 @@ class OrdersAdmin extends StatelessWidget {
                                                                     ? Colors
                                                                         .white
                                                                     : Colors
-                                                                        .grey),
+                                                                        .black),
                                                           ),
                                                           Text(
                                                             EndPoints.allorders[
                                                                     index][
                                                                 'customerPhoneNumber'],
                                                             style: TextStyle(
-                                                                fontSize: 16,
+                                                                fontSize: 18,
                                                                 color: Colors
                                                                     .grey),
                                                           ),
@@ -250,13 +250,8 @@ class OrdersAdmin extends StatelessWidget {
                                                             color: EndPoints
                                                                     .isDark
                                                                 ? Colors.white
-                                                                : EndPoints
-                                                                        .isDark
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .black,
-                                                            fontSize: 18,
+                                                                : Colors.black,
+                                                            fontSize: 22,
                                                           ),
                                                         ),
                                                       )

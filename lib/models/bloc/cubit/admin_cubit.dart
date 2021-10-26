@@ -540,6 +540,10 @@ class AdminCubit extends Cubit<AdminState> {
     });
   }
 
+  Future logout() async {
+    return await CachFunc.deleteData('token');
+  }
+
   editRecipeWithoutPhoto(
       String recipeId,
       String token,
@@ -592,5 +596,16 @@ class AdminCubit extends Cubit<AdminState> {
     EndPoints.isDark = !EndPoints.isDark;
     await CachFunc.putBoolDate(key: 'isDark', data: EndPoints.isDark);
     emit(ChangeTheme());
+  }
+
+  getalldataifSignedin(String token) {
+    if (CachFunc.getData('token') == null) {
+      print('LogIn');
+    } else {
+      getAllOrders(token);
+      getAllCategories();
+      getAllusers(token);
+      getallRecipes();
+    }
   }
 }

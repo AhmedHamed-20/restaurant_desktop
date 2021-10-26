@@ -73,7 +73,8 @@ class CategoriesAdmin extends StatelessWidget {
                                   Text(
                                     'Create new Categorie',
                                     style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
                                         fontFamily: 'Batka',
                                         color: EndPoints.isDark
                                             ? Colors.white
@@ -87,64 +88,69 @@ class CategoriesAdmin extends StatelessWidget {
                                     height: MediaQuery.of(context).size.height *
                                         0.12,
                                   ),
-                                  TextField(
-                                    style: TextStyle(
-                                      color: EndPoints.isDark
-                                          ? Colors.white
-                                          : EndPoints.isDark
-                                              ? Colors.white
-                                              : Colors.black,
-                                    ),
-                                    cursorColor: EndPoints.isDark
-                                        ? Colors.white
-                                        : EndPoints.isDark
-                                            ? Colors.white
-                                            : Colors.black,
-                                    controller: categorieName,
-                                    keyboardType: TextInputType.text,
-                                    onChanged: (value) {},
-                                    onSubmitted: (val) {},
-                                    decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                        borderSide: BorderSide(
-                                          color: EndPoints.isDark
-                                              ? Colors.white
-                                              : EndPoints.isDark
-                                                  ? Colors.white
-                                                  : Colors.black,
-                                        ),
-                                      ),
-                                      labelText: 'Categorie Name',
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          borderSide: BorderSide(
-                                            color: Colors.orangeAccent,
-                                          )),
-                                      labelStyle: TextStyle(
-                                          color: EndPoints.isDark
-                                              ? Colors.white
-                                              : EndPoints.isDark
-                                                  ? Colors.white
-                                                  : Colors.black),
-                                      prefixIcon: Icon(
-                                        IconlyBroken.paper,
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.7,
+                                    child: TextField(
+                                      style: TextStyle(
                                         color: EndPoints.isDark
                                             ? Colors.white
                                             : EndPoints.isDark
                                                 ? Colors.white
                                                 : Colors.black,
                                       ),
-                                      border: OutlineInputBorder(
+                                      cursorColor: EndPoints.isDark
+                                          ? Colors.white
+                                          : EndPoints.isDark
+                                              ? Colors.white
+                                              : Colors.black,
+                                      controller: categorieName,
+                                      keyboardType: TextInputType.text,
+                                      onChanged: (value) {},
+                                      onSubmitted: (val) {},
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(15),
                                           borderSide: BorderSide(
+                                            color: EndPoints.isDark
+                                                ? Colors.white
+                                                : EndPoints.isDark
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                          ),
+                                        ),
+                                        labelText: 'Categorie Name',
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            borderSide: BorderSide(
+                                              color: Colors.orangeAccent,
+                                            )),
+                                        labelStyle: TextStyle(
+                                            color: EndPoints.isDark
+                                                ? Colors.white
+                                                : EndPoints.isDark
+                                                    ? Colors.white
+                                                    : Colors.black),
+                                        prefixIcon: Icon(
+                                          IconlyBroken.paper,
+                                          color: EndPoints.isDark
+                                              ? Colors.white
+                                              : EndPoints.isDark
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                        ),
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            borderSide: BorderSide(
+                                              color: Colors.orangeAccent,
+                                            )),
+                                        disabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
                                             color: Colors.orangeAccent,
-                                          )),
-                                      disabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Colors.orangeAccent,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -152,18 +158,23 @@ class CategoriesAdmin extends StatelessWidget {
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                    color: Colors.orangeAccent,
-                                    onPressed: () {
-                                      cubit.createNewCategory(
-                                          token, categorieName.text, context);
-                                    },
-                                    child: Text(
-                                      'Add',
-                                      style: TextStyle(color: Colors.white),
+                                  Container(
+                                    width: 200,
+                                    height: 50,
+                                    child: MaterialButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                      color: Colors.orangeAccent,
+                                      onPressed: () {
+                                        cubit.createNewCategory(
+                                            token, categorieName.text, context);
+                                      },
+                                      child: Text(
+                                        'Add',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 22),
+                                      ),
                                     ),
                                   )
                                 ],
@@ -280,7 +291,10 @@ class CategoriesAdmin extends StatelessWidget {
                                                             Text(
                                                               'Update Categorie Name',
                                                               style: TextStyle(
-                                                                  fontSize: 18,
+                                                                  fontSize: 22,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
                                                                   fontFamily:
                                                                       'Bakta',
                                                                   color: EndPoints
@@ -297,9 +311,27 @@ class CategoriesAdmin extends StatelessWidget {
                                                                       .height *
                                                                   0.08,
                                                             ),
-                                                            TextField(
-                                                              style: TextStyle(
-                                                                color: EndPoints
+                                                            Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.7,
+                                                              child: TextField(
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: EndPoints
+                                                                          .isDark
+                                                                      ? Colors
+                                                                          .white
+                                                                      : EndPoints
+                                                                              .isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                ),
+                                                                cursorColor: EndPoints
                                                                         .isDark
                                                                     ? Colors
                                                                         .white
@@ -309,87 +341,74 @@ class CategoriesAdmin extends StatelessWidget {
                                                                             .white
                                                                         : Colors
                                                                             .black,
-                                                              ),
-                                                              cursorColor: EndPoints
-                                                                      .isDark
-                                                                  ? Colors.white
-                                                                  : EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                              controller:
-                                                                  categorieNewName,
-                                                              keyboardType:
-                                                                  TextInputType
-                                                                      .text,
-                                                              onChanged:
-                                                                  (value) {},
-                                                              onSubmitted:
-                                                                  (val) {},
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                enabledBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
+                                                                controller:
+                                                                    categorieNewName,
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .text,
+                                                                onChanged:
+                                                                    (value) {},
+                                                                onSubmitted:
+                                                                    (val) {},
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            15),
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: EndPoints.isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                    ),
+                                                                  ),
+                                                                  labelText:
+                                                                      'Categorie New Name',
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                          borderRadius: BorderRadius.circular(
                                                                               15),
-                                                                  borderSide:
-                                                                      BorderSide(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Colors.orangeAccent,
+                                                                          )),
+                                                                  labelStyle: TextStyle(
+                                                                      color: EndPoints.isDark
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black),
+                                                                  prefixIcon:
+                                                                      Icon(
+                                                                    IconlyBroken
+                                                                        .paper,
                                                                     color: EndPoints.isDark
                                                                         ? Colors
                                                                             .white
                                                                         : Colors
                                                                             .black,
                                                                   ),
-                                                                ),
-                                                                labelText:
-                                                                    'Categorie New Name',
-                                                                focusedBorder:
-                                                                    OutlineInputBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                15),
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.orangeAccent,
-                                                                        )),
-                                                                labelStyle: TextStyle(
-                                                                    color: EndPoints.isDark
-                                                                        ? Colors
-                                                                            .white
-                                                                        : Colors
-                                                                            .black),
-                                                                prefixIcon:
-                                                                    Icon(
-                                                                  IconlyBroken
-                                                                      .paper,
-                                                                  color: EndPoints
-                                                                          .isDark
-                                                                      ? Colors
-                                                                          .white
-                                                                      : Colors
-                                                                          .black,
-                                                                ),
-                                                                border:
-                                                                    OutlineInputBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                15),
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.orangeAccent,
-                                                                        )),
-                                                                disabledBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Colors
-                                                                        .orangeAccent,
+                                                                  border:
+                                                                      OutlineInputBorder(
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              15),
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Colors.orangeAccent,
+                                                                          )),
+                                                                  disabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                          .orangeAccent,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -397,33 +416,42 @@ class CategoriesAdmin extends StatelessWidget {
                                                             SizedBox(
                                                               height: 10,
                                                             ),
-                                                            MaterialButton(
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            25),
-                                                              ),
-                                                              color: Colors
-                                                                  .orangeAccent,
-                                                              onPressed: () {
-                                                                cubit
-                                                                    .editCategorieName(
-                                                                  categorieNewName
-                                                                      .text,
-                                                                  token,
-                                                                  EndPoints.allCategories[
-                                                                          index]
-                                                                      ['_id'],
-                                                                  context,
-                                                                );
-                                                              },
-                                                              child: Text(
-                                                                'Change',
-                                                                style: TextStyle(
+                                                            Container(
+                                                              width: 200,
+                                                              height: 50,
+                                                              child:
+                                                                  MaterialButton(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25),
+                                                                ),
+                                                                color: Colors
+                                                                    .orangeAccent,
+                                                                onPressed: () {
+                                                                  cubit
+                                                                      .editCategorieName(
+                                                                    categorieNewName
+                                                                        .text,
+                                                                    token,
+                                                                    EndPoints.allCategories[
+                                                                            index]
+                                                                        ['_id'],
+                                                                    context,
+                                                                  );
+                                                                },
+                                                                child: Text(
+                                                                  'Change',
+                                                                  style:
+                                                                      TextStyle(
                                                                     color: Colors
-                                                                        .white),
+                                                                        .white,
+                                                                    fontSize:
+                                                                        22,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             )
                                                           ],

@@ -12,6 +12,11 @@ import 'package:restaurant_windows/widgets/navigate.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(AppintiState());
   static LoginCubit get(context) => BlocProvider.of(context);
+  bool isHide = true;
+  changePasswordvisabilty() {
+    isHide = !isHide;
+    emit(changePasswordVisabilty());
+  }
 
   Future getAllusers(String token) {
     return DioFunc.getdate(
