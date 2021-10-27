@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant_windows/layout/admin_layout/admin_layout_screen.dart';
 import 'package:restaurant_windows/models/bloc/states/login_states.dart';
@@ -8,6 +9,7 @@ import 'package:restaurant_windows/models/cach/chach.dart';
 import 'package:restaurant_windows/models/dio/dio.dart';
 import 'package:restaurant_windows/models/dio/end_points.dart';
 import 'package:restaurant_windows/widgets/navigate.dart';
+import 'package:toast/toast.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(AppintiState());
@@ -91,23 +93,33 @@ class LoginCubit extends Cubit<LoginState> {
           "password": password,
         },
       ).then((value) {
-        print(value.data['token']);
-        token = value.data['token'];
-        CachFunc.putStringDate(key: 'token', data: value.data['token'])
-            .then((value) async {
-          await getAllusers(token).then((value) async {
-            print(value);
-            await getallRecipes();
-            getAllCategories();
-            getAllOrders(token);
-            emit(DataGetSucces());
-            Navigate(context: context, Screen: AdminLayout());
+        print(value.data);
+        if (value.data['data']['user']['role'] == 'admin') {
+          print(value.data['token']);
+          token = value.data['token'];
+          CachFunc.putStringDate(key: 'token', data: value.data['token'])
+              .then((value) async {
+            await getAllusers(token).then((value) async {
+              print(value);
+              await getallRecipes();
+              getAllCategories();
+              getAllOrders(token);
+              emit(DataGetSucces());
+
+              Navigate(context: context, Screen: AdminLayout());
+              Toast.show('Welcome admin', context,
+                  backgroundColor: Colors.green, textColor: Colors.white);
+            });
           });
-        });
+        } else {
+          Toast.show('Please login via admin account', context,
+              backgroundColor: Colors.red, textColor: Colors.white);
+          emit(DataGeterror());
+        }
       });
     } on DioError catch (e) {
       emit(DataGeterror());
-      print(e.response);
+      print(e.response.statusMessage);
     }
   }
 }
